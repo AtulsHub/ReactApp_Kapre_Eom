@@ -1,13 +1,12 @@
 import dotenv from "dotenv";
 import connectDB from "./db/index.js";
-import {app} from "./app.js";
+import { app } from "./app.js";
 
 dotenv.config({
   path: "./.env",
 });
 
 console.log("Hello from the backend!");
-
 
 connectDB()
   .then(() => {

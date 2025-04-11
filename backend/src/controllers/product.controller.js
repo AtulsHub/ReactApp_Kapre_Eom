@@ -28,7 +28,7 @@ const getProductsByCategory = async (req, res) => {
   try {
     const { category } = req.query;
     const page = parseInt(req.query.page) || 1;
-    const limit = 10;
+    const limit = parseInt(req.query.limit) || 10;
     const skip = (page - 1) * limit;
 
     const query = category ? { category } : {};
@@ -48,13 +48,10 @@ const getProductsByCategory = async (req, res) => {
 const createProducts = async (req, res) => {
   try {
     const { title, description, oldPrice, newPrice, category } = req.body;
-    
 
     const productLocalPath = req.file?.path || "";
 
-
     const productPic = await uploadOnCloudinary(productLocalPath);
-    
 
     const newProduct = await Product.create({
       product_Id: Product._id,
@@ -64,7 +61,6 @@ const createProducts = async (req, res) => {
       newPrice,
       productImage: productPic?.url || "",
       category,
-
     });
 
     res.status(201).json(newProduct);
