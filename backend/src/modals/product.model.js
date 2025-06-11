@@ -10,6 +10,44 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
+    smallDescription: {
+      type: String,
+      required: true,
+    },
+    stock: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    size: {
+      type: String,
+      required: true,
+    },
+    color: {
+      type: String,   
+  required: true,
+    },  
+    brand: {
+      type: String,
+      required: true,
+    },
+    rating: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    reviews: [
+      {
+        user: {
+          type: mongoose.Schema.Types.ObjectId,
+          ref: "User",
+        },
+        rating: {
+          type: Number,
+          required: true, 
+        },
+      }],
+
     oldPrice: {
       type: Number,
       required: true,
