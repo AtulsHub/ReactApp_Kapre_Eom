@@ -1,0 +1,104 @@
+### USER ENDPOINTS
+
+# Register a new user
+POST http://localhost:3000/api/v1/users/register
+Content-Type: application/json
+
+{
+  "name": "Test User",
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+# Login
+POST http://localhost:3000/api/v1/users/login
+Content-Type: application/json
+
+{
+  "email": "test@example.com",
+  "password": "password123"
+}
+
+# Get user by ID
+GET http://localhost:3000/api/v1/users/get-user/{{userId}}
+
+# Update user
+PUT http://localhost:3000/api/v1/users/update-user/{{userId}}
+Content-Type: application/json
+
+{
+  "name": "Updated Name"
+}
+
+# Logout
+GET http://localhost:3000/api/v1/users/logout/{{userId}}
+
+# Delete user
+DELETE http://localhost:3000/api/v1/users/delete/{{userId}}
+
+
+### PRODUCT ENDPOINTS
+
+# Create product (multiple images)
+POST http://localhost:3000/api/v1/products/create-product
+Content-Type: multipart/form-data
+
+# (Use form-data: title, description, oldPrice, newPrice, category, brand, size, color, stock, productImages[])
+
+# Remove product
+DELETE http://localhost:3000/api/v1/products/remove-product/{{productId}}
+
+# Get products by category (with pagination)
+GET http://localhost:3000/api/v1/products/get-product-by-category?category=Men&page=1&limit=10
+
+# Filter products (with pagination)
+GET http://localhost:3000/api/v1/products/search?title=shirt&brand=BasicWear&page=1&limit=10
+
+# Get paginated products
+GET http://localhost:3000/api/v1/products/products-paginated?page=1&limit=10
+
+
+### CART ENDPOINTS
+
+# Add to cart
+POST http://localhost:3000/api/v1/cart/add
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "productId": "{{productId}}",
+  "quantity": 2
+}
+
+# Remove from cart
+POST http://localhost:3000/api/v1/cart/remove
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "productId": "{{productId}}"
+}
+
+
+### WISHLIST ENDPOINTS
+
+# Add to wishlist
+POST http://localhost:3000/api/v1/wishlist/add
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "productId": "{{productId}}"
+}
+
+# Remove from wishlist
+POST http://localhost:3000/api/v1/wishlist/remove
+Content-Type: application/json
+
+{
+  "userId": "{{userId}}",
+  "productId": "{{productId}}"
+}
+
+# Get wishlist items
+GET http://localhost:3000/api/v1/wishlist/items?userId={{userId}}
