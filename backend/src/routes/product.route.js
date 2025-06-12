@@ -1,21 +1,25 @@
 import { Router } from "express";
 import { upload } from "../middlewares/multer.middleware.js";
 import {
-  getAllItems,
-  getProductsByCategory,
-  createProducts,
+createProduct,
+removeProduct, 
+getProductsByCategory, 
+filterProducts, 
+getProductsPaginated
 } from "../controllers/product.controller.js";
 
 const router = Router();
 
 router
   .route("/create-product")
-  .post(upload.single("productImage"), createProducts);
+  .post(upload.array("productImages", 10), createProduct);
+router.route("/remove-product/:productId").delete(removeProduct);
 // router.route("/get-product/:itemId").get(getItem);
 // router.route("/update-product/:itemId").put(upload.single("itemImage"), updateItem);
 // router.route("/delete-product/:itemId").delete(deleteItem);
 
-router.route("/get-all-products").get(getAllItems);
 router.route("/get-product-by-category").get(getProductsByCategory);
+router.route("/search").get(filterProducts);
+router.route("/products-paginated").get(getProductsPaginated);
 
 export default router;
