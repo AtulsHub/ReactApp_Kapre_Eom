@@ -24,9 +24,9 @@ const productSchema = new Schema(
       required: true,
     },
     color: {
-      type: String,   
-  required: true,
-    },  
+      type: String,
+      required: true,
+    },
     brand: {
       type: String,
       required: true,
@@ -44,9 +44,10 @@ const productSchema = new Schema(
         },
         rating: {
           type: Number,
-          required: true, 
+          required: true,
         },
-      }],
+      },
+    ],
 
     oldPrice: {
       type: Number,
@@ -60,6 +61,12 @@ const productSchema = new Schema(
       type: String,
       required: true,
     },
+    productImages: [
+      {
+        type: String,
+        required: false,
+      },
+    ],
     category: {
       type: String,
       required: true,
